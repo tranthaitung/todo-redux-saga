@@ -1,4 +1,4 @@
-@import 'views/styles/shared';
+@import '../../styles/shared';
 
 
 .task-form {
@@ -20,7 +20,7 @@
   font-family: inherit;
   font-size: rem(24px);
   font-weight: 300;
-  color: #fff;
+  //color: #fff;
   background: transparent;
 
   @include media-query(540) {

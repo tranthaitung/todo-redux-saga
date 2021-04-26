@@ -33,6 +33,7 @@ export class TaskForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const title = this.state.title.trim();
+    console.log(title);
     if (title.length) this.props.handleSubmit(title);
     this.clearInput();
   }

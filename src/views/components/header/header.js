@@ -22,7 +22,7 @@ const Header = ({ authenticated, signOut }) => (
               className="link link--github"
               href="https://github.com/r-park/todo-redux-saga"
             >
-              <GitHubLogo />
+              {/* <GitHubLogo /> */}
             </a>
           </li>
         </ul>
