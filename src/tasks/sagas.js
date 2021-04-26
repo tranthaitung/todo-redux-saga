@@ -1,13 +1,12 @@
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { eventChannel } from 'redux-saga';
-import { call, cancel, fork, put, take } from 'redux-saga/effects';
-import { authActions } from 'src/auth';
-import { taskActions } from './actions';
-import { taskList } from './task-list';
-
+import { LOCATION_CHANGE } from "react-router-redux";
+import { eventChannel } from "redux-saga";
+import { call, cancel, fork, put, take } from "redux-saga/effects";
+import { authActions } from "../auth/auth";
+import { taskActions } from "./actions";
+import { taskList } from "./task-list";
 
 function subscribe() {
-  return eventChannel(emit => taskList.subscribe(emit));
+  return eventChannel((emit) => taskList.subscribe(emit));
 }
 
 function* read() {
@@ -21,16 +20,29 @@ function* read() {
 function* write(context, method, onError, ...params) {
   try {
     yield call([context, method], ...params);
-  }
-  catch (error) {
+  } catch (error) {
     yield put(onError(error));
   }
 }
 
-const createTask = write.bind(null, taskList, taskList.push, taskActions.createTaskFailed);
-const removeTask = write.bind(null, taskList, taskList.remove, taskActions.removeTaskFailed);
-const updateTask = write.bind(null, taskList, taskList.update, taskActions.updateTaskFailed);
-
+const createTask = write.bind(
+  null,
+  taskList,
+  taskList.push,
+  taskActions.createTaskFailed
+);
+const removeTask = write.bind(
+  null,
+  taskList,
+  taskList.remove,
+  taskActions.removeTaskFailed
+);
+const updateTask = write.bind(
+  null,
+  taskList,
+  taskList.update,
+  taskActions.updateTaskFailed
+);
 
 //=====================================
 //  WATCHERS
@@ -58,9 +70,9 @@ function* watchCreateTask() {
 function* watchLocationChange() {
   while (true) {
     let { payload } = yield take(LOCATION_CHANGE);
-    if (payload.pathname === '/') {
+    if (payload.pathname === "/") {
       const params = new URLSearchParams(payload.search);
-      const filter = params.get('filter');
+      const filter = params.get("filter");
       yield put(taskActions.filterTasks(filter));
     }
   }
@@ -79,7 +91,6 @@ function* watchUpdateTask() {
     yield fork(updateTask, payload.task.key, payload.changes);
   }
 }
-
 
 //=====================================
 //  TASK SAGAS

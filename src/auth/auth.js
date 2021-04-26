@@ -1,4 +1,4 @@
-import { firebaseAuth } from "src/firebase";
+import { firebaseAuth } from "../firebase/firebase";
 import { authActions } from "./actions";
 
 export function initAuth(dispatch) {

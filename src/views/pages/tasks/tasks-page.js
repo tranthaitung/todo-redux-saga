@@ -1,17 +1,16 @@
-import React from 'react';
-import { List } from 'immutable';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { taskActions, getVisibleTasks } from 'src/tasks';
-import TaskFilters from 'src/views/components/task-filters';
-import TaskForm from 'src/views/components/task-form';
-import TaskList from 'src/views/components/task-list';
+import React from "react";
+import { List } from "immutable";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { taskActions, getVisibleTasks } from "../../../tasks";
+import TaskFilters from "../../components/task-filters";
+import TaskForm from "../../components/task-form";
+import TaskList from "../../components/task-list";
 
-
-const TasksPage = ({createTask, location, removeTask, tasks, updateTask}) => {
+const TasksPage = ({ createTask, location, removeTask, tasks, updateTask }) => {
   const params = new URLSearchParams(location.search);
-  const filter = params.get('filter');
+  const filter = params.get("filter");
 
   return (
     <div className="g-row">
@@ -41,12 +40,11 @@ TasksPage.propTypes = {
   updateTask: PropTypes.func.isRequired
 };
 
-
 //=====================================
 //  CONNECT
 //-------------------------------------
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   tasks: getVisibleTasks(state)
 });
 
@@ -58,8 +56,5 @@ const mapDispatchToProps = {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TasksPage)
+  connect(mapStateToProps, mapDispatchToProps)(TasksPage)
 );

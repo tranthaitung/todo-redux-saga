@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import './task-form.css';
-
+import "./task-form.scss";
 
 export class TaskForm extends Component {
   static propTypes = {
@@ -12,7 +11,7 @@ export class TaskForm extends Component {
   constructor() {
     super(...arguments);
 
-    this.state = {title: ''};
+    this.state = { title: "" };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -20,11 +19,11 @@ export class TaskForm extends Component {
   }
 
   clearInput() {
-    this.setState({title: ''});
+    this.setState({ title: "" });
   }
 
   handleChange(event) {
-    this.setState({title: event.target.value});
+    this.setState({ title: event.target.value });
   }
 
   handleKeyUp(event) {
@@ -56,6 +55,5 @@ export class TaskForm extends Component {
     );
   }
 }
-
 
 export default TaskForm;
